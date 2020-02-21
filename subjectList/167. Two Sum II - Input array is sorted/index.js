@@ -37,3 +37,19 @@ var twoSum = function(numbers, target) {
     } 
   }
 };
+
+// 
+var twoSum = function(numbers, target) {
+    let result = [];
+    let length = numbers.length;
+    for(let i = 0; i < length; i++) {
+        if (numbers[i] + numbers[length - 1] == target) {
+            result = [ i + 1, length];
+            break;
+        } else if (numbers[i] + numbers[length - 1] > target) {
+            length --;
+            i --;
+        }
+    }
+    return result;
+};
