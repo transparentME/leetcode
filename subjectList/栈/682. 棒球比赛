@@ -1,0 +1,25 @@
+function toNumber(num) {
+  return Number(num)
+}
+var calPoints = function(ops) {
+  let length = ops.length;
+  let cache = [];
+  let total = 0;
+  for(let i = 0; i < length; i++) {
+    if (Number(ops[i]) || ops[i] === '0') {
+      cache.push(toNumber(ops[i]))
+      total += toNumber(ops[i])
+    } else if (ops[i] === 'D') {
+      total = total + (toNumber(cache[cache.length - 1]) * 2)
+      cache.push(toNumber(cache[cache.length - 1]) * 2)
+    } else if (ops[i] === 'C') {
+      total = total - toNumber(cache[cache.length - 1])
+      cache.pop()
+    } else {
+      total = total + toNumber(cache[cache.length - 1]) + toNumber(cache[cache.length - 2])
+      cache.push((toNumber(cache[cache.length - 1]) + toNumber(cache[cache.length - 2])))
+    }
+  }
+  return total;
+};
+// 这次写的不够好，不需要cache，浪费空间，因为最多只需要两个就行了。
